@@ -1,0 +1,15 @@
+motor:
+  ros__parameters:
+    kp: 300
+    ki: 10
+    kd: 5
+    pid_sample_time: 0.05
+    pid_output_limit: 10000
+    pid_integral_limit: 10000
+    wheel_angle_limit_right: 90
+    wheel_angle_limit_left: 50
+    wheel_angle_limit_center: 70
+    motor_center_point: 27744
+    cam_ref: 90
+    cam_offset: 2
+    can_port: "/dev/ttyUSB0"

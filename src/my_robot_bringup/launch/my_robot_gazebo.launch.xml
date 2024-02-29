@@ -9,18 +9,16 @@
         <param name="robot_description"
                 value="$(command 'xacro $(var urdf_path)')"/>
     </node>
-    <include file="$(find-pkg-share gazebo_ros)/launch/gazebo.launch.py">
-        <arg name="world" value="$(find-pkg-share my_robot_description)/worlds/my_world.world"/>
-    </include>
     
 
-    <!-- <node pkg="gazebo_ros" type="spawn_entity.py" name="spawn_entity" output="screen">
-        <remap from="robot_description" to="/robot_description"/>
-        <param name="topic" value="/robot_description"/>
-        <param name="entity" value="my_robot"/>
-    </node> -->
-
+    <include file="$(find-pkg-share gazebo_ros)/launch/gazebo.launch.py">
+        <arg name="world" value="$(find-pkg-share my_robot_bringup)/worlds/bahce.world"/>
+    </include>
+    
     <node pkg="gazebo_ros" exec="spawn_entity.py" name="spawn_entity" output="screen"
-        args="-topic robot_description -entity my_robot" /> 
-    <node pkg="rviz2" exec="rviz2" args="-d $(var rviz_config_path)" output="screen"/> 
+        args="-topic robot_description -entity my_robot -x -23.262923 -y 11.216036 -z 0"/>
+
+    <node pkg="rviz2" exec="rviz2" args="-d $(var rviz_config_path)" output="screen"/>
+    
+    
 </launch>

@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <link name="gps_link">
+        <visual>
+            <geometry>
+                <box size="${gps_length} ${gps_width} ${gps_height}"/>
+            </geometry>
+            <origin xyz="0 0 ${gps_height / 2.0}" rpy="0 0 0"/>
+            <material name="grey"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="${gps_length} ${gps_width} ${gps_height}"/>
+            </geometry>
+            <origin xyz="0 0 ${gps_height / 2.0}" rpy="0 0 0"/>
+        </collision>
+        <xacro:box_inertia m="0.1" l="${2*gps_length}" w="${2*gps_width}" h="${2*gps_height}"
+                                xyz="0 0 ${gps_height / 2.0}" rpy="0 0 0" />
+    </link>
+
+    <link name="imu_link">
+        <visual>
+            <geometry>
+                <box size="${gps_length} ${gps_width} ${gps_height}"/>
+            </geometry>
+            <origin xyz="0 0 ${-gps_height / 2.0}" rpy="0 0 0"/>
+            <material name="grey"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="${gps_length} ${gps_width} ${gps_height}"/>
+            </geometry>
+            <origin xyz="0 0 ${-gps_height / 2.0}" rpy="0 0 0"/>
+        </collision>
+        <xacro:box_inertia m="0.1" l="${2*gps_length}" w="${2*gps_width}" h="${2*gps_height}"
+                                xyz="0 0 ${-gps_height / 2.0}" rpy="0 0 0" />
+    </link>
+
+    <joint name="base_gps_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="gps_link"/>
+        <origin xyz="0 0 ${base_height}" rpy="0 0 0"/>
+    </joint>
+    
+    <joint name="base_imu_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="imu_link"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+</robot>
